@@ -1,2 +1,5 @@
 # Python venv
 env/*
+
+#Debug log
+debug.log
