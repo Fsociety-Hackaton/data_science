@@ -9,6 +9,3 @@ def connection():
     db = client.data
 
     return db
-
-def insert_jobs():
-    pass

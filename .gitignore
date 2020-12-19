@@ -1,5 +1,6 @@
-# Python venv
+# Python venv and cache
 env/*
+__pycache__/*
 
-#Debug log
-debug.log
+#Log Files
+*.log
