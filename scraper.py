@@ -83,7 +83,6 @@ def scraper(location, country):
 
         for job in job_list:
             job_title.append(job.find('h3', attrs={'job-result-card__title'}).get_text())
-            #job_image.append(job.find('img', attrs={'artdeco-entity-image'}).get('src'))
             job_country.append(location)
             job_location.append(job.find('span', attrs={'job-result-card__location'}).get_text())
             job_date.append(job.select_one('time')['datetime'])
@@ -126,8 +125,6 @@ def scraper(location, country):
             'category': job_category
         })
         
-        print(jobs)
-
         #Insert into DB
         try:
             jobs_convert = jobs.to_json(orient='records')
@@ -155,7 +152,6 @@ def scraper(location, country):
 
         #Get page source
         source = parser(driver)
-        #job_list = driver.find_elements_by_xpath('//div[contains(@class,"clickcard")]')
         job_list = source.find_all('div',attrs={'class':'clickcard'})
         print(f'Found {len(job_list)} {replace(key)} jobs in {location}')
 
@@ -171,7 +167,7 @@ def scraper(location, country):
 
 
         for job in job_list:
-            #print(f'Information: {job} \n\n')
+    
             job_title.append(job.find('a', attrs={'class':'jobtitle'}).get_text())
 
             try:
@@ -214,6 +210,7 @@ def scraper(location, country):
         jobs = pd.DataFrame({
             'title': job_title,
             'company': job_company,
+            'image': 'Sin imagen',
             'country': job_country,
             'location': job_location,
             'date': job_date,
